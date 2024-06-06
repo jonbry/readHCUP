@@ -1,16 +1,16 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# loadHCUP
+# readHCUP
 
 <!-- badges: start -->
 <!-- badges: end -->
 
 ## Overview
 
-loadHCUP makes it easy to read and work with datasets from [Healthcare
+readHCUP makes it easy to read and work with datasets from [Healthcare
 Cost and Utilization Project (HCUP)](https://hcup-us.ahrq.gov/).
-loadHCUP’s functions are designed to work with the ASC files directly,
+readHCUP’s functions are designed to work with the ASC files directly,
 so no need to preprocess the data for any of the supported datasets. The
 number of supported datasets is limited as the package is currently in
 beta, but more datasets will be added weekly.
@@ -28,18 +28,18 @@ feedback, or feature requests.
 
 ## Installation
 
-You can install the development version of loadHCUP from
+You can install the development version of readHCUP from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("jonbry/loadHCUP")
+devtools::install_github("jonbry/readHCUP")
 ```
 
 ## Example
 
 ``` r
-library(loadHCUP)
+library(readHCUP)
 
 # Read the example NIS dataset
 df <- read_nis("NIS_2019_test_data.ASC", 2019)
