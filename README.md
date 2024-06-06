@@ -8,12 +8,12 @@
 
 ## Overview
 
-loadHCUP makes it easy to load and work with datasets from [Healthcare
-Cost and Utilization Project (HCUP)](https://hcup-us.ahrq.gov/). All the
-functions are designed to work with the ASC files directly, so no need
-to preprocess the data for any of the supported datasets. The number of
-supported datasets is limited as the package is currently in beta, but
-more datasets will be added weekly.
+loadHCUP makes it easy to read and work with datasets from [Healthcare
+Cost and Utilization Project (HCUP)](https://hcup-us.ahrq.gov/).
+loadHCUP’s functions are designed to work with the ASC files directly,
+so no need to preprocess the data for any of the supported datasets. The
+number of supported datasets is limited as the package is currently in
+beta, but more datasets will be added weekly.
 
 The currently supported datasets:
 
@@ -38,33 +38,12 @@ devtools::install_github("jonbry/loadHCUP")
 
 ## Example
 
-Import the NIS dataset :
-
 ``` r
 library(loadHCUP)
-## basic example code
+
+# Read the example NIS dataset
+df <- read_nis("NIS_2019_test_data.ASC", 2019)
+
+# Read only the first 5 observations of the example dataset
+df_5 <- read_nis("NIS_2019_test_data.ASC", 2019, n_max = 5)
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
