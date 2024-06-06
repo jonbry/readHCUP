@@ -28,8 +28,8 @@
 read_nis <- function(file, year, import_method = "readr", n_max = Inf, ...){
   width_file_name <- paste("nis_widths_", year, sep = "")
   na_file_name <- paste("nis_na_", year, sep = "")
-  na <- get0(na_file_name, envir = asNamespace("loadHCUP"))
-  widths <- get0(width_file_name, envir = asNamespace("loadHCUP"))
+  na <- get0(na_file_name, envir = asNamespace("readHCUP"))
+  widths <- get0(width_file_name, envir = asNamespace("readHCUP"))
   nis_data <- readr::read_fwf(file,
                               readr::fwf_widths(widths$width, col_names = widths$variable),
                               col_types = widths$r_type, na = na$na_vec)
