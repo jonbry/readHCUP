@@ -2,16 +2,19 @@
 % Please edit documentation in R/read_nis.R
 \name{read_nis}
 \alias{read_nis}
-\title{Read NIS file}
+\title{Read in NIS dataset}
 \usage{
-read_nis(dataset, year, import_method = "readr", ...)
+read_nis(file, year, import_method = "readr", n_max = Inf, ...)
 }
 \arguments{
-\item{dataset}{Path to NIS dataset file}
+\item{file}{Path to NIS dataset file}
 
 \item{year}{The year of the dataset}
 
-\item{import_method}{The function to import data. The default is readr/}
+\item{import_method}{The function to import data. The default is readr}
+
+\item{n_max}{The maximum number of rows/observations. The default is set all
+rows (\code{Inf})}
 
 \item{...}{Additional arguments}
 }
@@ -19,10 +22,19 @@ read_nis(dataset, year, import_method = "readr", ...)
 Returns a tibble
 }
 \description{
-Read NIS file
+NIS datasets can be challenging to work with as the .ASC files do not include
+information about the variables, labels, or NA values. The \code{read_nis()}
+function reads the .ASC file and returns a R object with the correct variable
+names and NA values.
 }
 \examples{
+# Read in the example NIS 2019 dataset
 \dontrun{
 NIS_2019_df <- read_nis("NIS_2019_test_data.ASC", 2019)
+}
+
+# Read in the first 5 observations of the example NIS 2019 dataset
+\dontrun{
+NIS_2019_df <- read_nis("NIS_2019_test_data.ASC", 2019, n_max = 5)
 }
 }
