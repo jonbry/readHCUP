@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(loadHCUP)
+library(readHCUP)
 
-test_check("loadHCUP")
+test_check("readHCUP")

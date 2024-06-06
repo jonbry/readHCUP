@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# loadHCUP
+# readHCUP
 
 <!-- badges: start -->
 
@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-loadHCUP makes it easy to read and work with datasets from [Healthcare Cost and Utilization Project (HCUP)](https://hcup-us.ahrq.gov/). loadHCUP's functions are designed to work with the ASC files directly, so no need to preprocess the data for any of the supported datasets. The number of supported datasets is limited as the package is currently in beta, but more datasets will be added weekly.
+readHCUP makes it easy to read and work with datasets from [Healthcare Cost and Utilization Project (HCUP)](https://hcup-us.ahrq.gov/). readHCUP's functions are designed to work with the ASC files directly, so no need to preprocess the data for any of the supported datasets. The number of supported datasets is limited as the package is currently in beta, but more datasets will be added weekly.
 
 The currently supported datasets:
 
@@ -33,17 +33,17 @@ Please feel free to create an issue if you have any questions, concerns, feedbac
 
 ## Installation
 
-You can install the development version of loadHCUP from [GitHub](https://github.com/) with:
+You can install the development version of readHCUP from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("jonbry/loadHCUP")
+devtools::install_github("jonbry/readHCUP")
 ```
 
 ## Example
 
 ```{r example, eval = FALSE}
-library(loadHCUP)
+library(readHCUP)
 
 # Read the example NIS dataset
 df <- read_nis("NIS_2019_test_data.ASC", 2019)
