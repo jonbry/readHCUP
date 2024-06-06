@@ -1,6 +1,6 @@
 #' Read NIS file
 #'
-#' @param dataset NIS dataset file
+#' @param dataset Path to NIS dataset file
 #' @param year The year of the dataset
 #' @param import_method The function to import data. The default is readr/
 #' @param ... Additional arguments
@@ -9,8 +9,9 @@
 #' @export
 #'
 #' @examples
-#' path <- system.file("extdata", "NIS_2019_test_data.ASC", package = "loadHCUP")
-#' NIS_2019_df <- read_nis(path, 2019)
+#' \dontrun{
+#' NIS_2019_df <- read_nis("NIS_2019_test_data.ASC", 2019)
+#' }
 read_nis <- function(dataset, year, import_method = "readr", ...){
   width_file_name <- paste("nis_widths_", year, sep = "")
   na_file_name <- paste("nis_na_", year, sep = "")

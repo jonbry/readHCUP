@@ -7,7 +7,7 @@
 read_nis(dataset, year, import_method = "readr", ...)
 }
 \arguments{
-\item{dataset}{NIS dataset file}
+\item{dataset}{Path to NIS dataset file}
 
 \item{year}{The year of the dataset}
 
@@ -22,6 +22,7 @@ Returns a tibble
 Read NIS file
 }
 \examples{
-path <- system.file("extdata", "NIS_2019_test_data.ASC", package = "loadHCUP")
-NIS_2019_df <- read_nis(path, 2019)
+\dontrun{
+NIS_2019_df <- read_nis("NIS_2019_test_data.ASC", 2019)
+}
 }

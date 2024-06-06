@@ -16,23 +16,51 @@ knitr::opts_chunk$set(
 # loadHCUP
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
-The goal of loadHCUP is to make it easier to load and work with HCUP datasets. 
+## Overview
+
+loadHCUP makes it easy to load and work with datasets from [Healthcare Cost and Utilization Project (HCUP)](https://hcup-us.ahrq.gov/). All the functions are designed to work with the ASC files directly, so no need to preprocess the data for any of the supported datasets. The number of supported datasets is limited as the package is currently in beta, but more datasets will be added weekly.
+
+The currently supported datasets:
+
+-   NIS 2019
+
+The current import method utilizes [readr](https://readr.tidyverse.org/), and additional import functions (data.table, etc) will be added in the near future.
+
+Please feel free to create an issue if you have any questions, concerns, feedback, or feature requests.
 
 ## Installation
 
-You can install the development version of loadHCUP like so:
+You can install the development version of loadHCUP from [GitHub](https://github.com/) with:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+# install.packages("devtools")
+devtools::install_github("jonbry/loadHCUP")
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Import the NIS dataset :
 
-```{r example, eval = FALSE}
+```{r example}
 library(loadHCUP)
 ## basic example code
 ```
+
+What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+
+```{r cars}
+summary(cars)
+```
+
+You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
+
+You can also embed plots, for example:
+
+```{r pressure, echo = FALSE}
+plot(pressure)
+```
+
+In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
