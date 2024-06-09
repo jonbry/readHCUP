@@ -15,5 +15,7 @@ Depends:
 URL: https://github.com/jonbry/readHCUP
 BugReports: https://github.com/jonbry/readHCUP/issues
 Suggests: 
+    devtools,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+LazyData: true
