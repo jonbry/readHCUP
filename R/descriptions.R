@@ -12,7 +12,8 @@
 #' head(var_desc, 5)
 descriptions <- function(dataset, year) {
   desc_lookup <- paste(toupper(dataset), year, sep = " ")
-  if (desc_lookup %in% supported_datasets[1]){
+  datasets <- readHCUP::supported_datasets
+  if (desc_lookup %in% datasets[1]){
     description <- get0(paste(toupper(dataset), year, "descriptions", sep = "_"), envir = asNamespace("readHCUP"))
   }
   else{
