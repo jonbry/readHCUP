@@ -31,3 +31,6 @@ test_that("All NA values are properly recognized", {
   expect_true(is.na(test_na$TOTCHG[5]))
   expect_true(is.na(test_na$YEAR[7]))
 })
+
+# With corrected all PCLASS_ORPROC should be 0 except for row 9, which should be one. We need to test that without corrected, they should all be zero.
+# I manually changed the values of KEY_NIS in the test_dataset to match the corrected test values.

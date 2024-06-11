@@ -56,11 +56,10 @@ read_nis <- function(file, year, import_method = "readr", col_select = NULL,
                                 col_types = widths$r_type, na = na$na_vec, n_max = n_max, ...)
   }
 
+  # Update to the corrected PCLASS_ORPROC from NIS_2019_corrected
   if (corrected == TRUE & year == 2019){
-    if (PCLASS_ORPROC %in% names(nis_data)){
-      nis_data <-
-        nis_data |>
-        mutate(PCLASS_ORPROC = NIS_2019_corrected$PCLASS_ORPROC)
-      }
+    nis_data <-
+      nis_data |>
+      dplyr::rows_update(NIS_2019_corrected, by = "KEY_NIS", unmatched = "ignore")
   }
 }
