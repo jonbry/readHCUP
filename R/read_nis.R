@@ -12,7 +12,8 @@
 #' by name or by a numerical column index.
 #' @param n_max The maximum number of rows/observations. The default is set all
 #'   rows (`Inf`).
-#' @param corrected Dataset has had corrections applied
+#' @param corrected Dataset has had the offical corrections applied The defaul
+#'   is set to TRUE
 #' @param ... Additional arguments
 #'
 #' @return Returns a tibble
@@ -40,7 +41,7 @@
 #' col_select = 19:21, n_max = 10)
 #' }
 read_nis <- function(file, year, import_method = "readr", col_select = NULL,
-                     n_max = Inf, corrected = TRUE, ...){
+                     n_max = Inf, corrected = TRUE){
   width_file_name <- paste("NIS", year, "widths", sep = "_")
   na_file_name <- paste("NIS", year, "na", sep = "_")
   na <- get0(na_file_name, envir = asNamespace("readHCUP"))
@@ -49,17 +50,24 @@ read_nis <- function(file, year, import_method = "readr", col_select = NULL,
   if (!is.null(col_select)){
     nis_data <- readr::read_fwf(file,
                                 readr::fwf_widths(widths$width, col_names = widths$variable),
-                                col_types = widths$r_type, na = na$na_vec, col_select = col_select, n_max = n_max, ...)
+                                col_types = widths$r_type, na = na$na_vec, col_select = col_select, n_max = n_max)
   } else {
     nis_data <- readr::read_fwf(file,
                                 readr::fwf_widths(widths$width, col_names = widths$variable),
-                                col_types = widths$r_type, na = na$na_vec, n_max = n_max, ...)
+                                col_types = widths$r_type, col_select = NULL, na = na$na_vec, n_max = n_max)
   }
 
   # Update to the corrected PCLASS_ORPROC from NIS_2019_corrected
   if (corrected == TRUE & year == 2019){
-    nis_data <-
-      nis_data |>
-      dplyr::rows_update(NIS_2019_corrected, by = "KEY_NIS", unmatched = "ignore")
+    if ("PRPCLASS_ORPROC" %in% colnames(nis_data)){
+      nis_data <-
+        nis_data |>
+        dplyr::rows_update(NIS_2019_corrected, by = "KEY_NIS", unmatched = "ignore")
+    } else{
+      nis_data
+    }
+  }
+  else {
+    return(nis_data)
   }
 }
