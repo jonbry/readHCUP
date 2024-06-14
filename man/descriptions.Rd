@@ -7,9 +7,9 @@
 descriptions(dataset, year)
 }
 \arguments{
-\item{dataset}{The dataset (currently only supporting nis).}
+\item{dataset}{The dataset (currently only supporting NIS).}
 
-\item{year}{The year the dataset was published.}
+\item{year}{The dataset year.}
 }
 \value{
 A tibble consisting of the variable names and their descriptions.

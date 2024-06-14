@@ -1,7 +1,7 @@
 #' Return a table of variables and their descriptions
 #'
-#' @param dataset The dataset (currently only supporting nis).
-#' @param year The year the dataset was published.
+#' @param dataset The dataset (currently only supporting NIS).
+#' @param year The dataset year.
 #'
 #' @return A tibble consisting of the variable names and their descriptions.
 #' @export

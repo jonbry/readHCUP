@@ -38,9 +38,18 @@ test_that("All NA values are properly recognized", {
 test_that("corrected works properly", {
   test_file <- system.file("extdata", "NIS_2019_test_data.ASC", package = "readHCUP")
   not_corrected <- rep(0, 10)
-  # corrected <- ncorrected
-  # corrected[9] <- 1
-  # df_corrected <- read_nis(test_file, 2019)
   df_not_corrected <- read_nis(test_file, 2019, corrected = FALSE)
   expect_equal(df_not_corrected$PCLASS_ORPROC, not_corrected)
+
+  corrected <- not_corrected
+  corrected[9] <- 1
+  df_corrected <- read_nis(test_file, 2019)
+  expect_equal(df_corrected$PCLASS_ORPROC, corrected)
+
+  expect_warning(read_nis(test_file, 2019, col_select = ("KEY_NIS")))
+
+  expect_warning(read_nis(test_file, 2019, col_select = ("PCLASS_ORPROC")))
+  df_no_key <- read_nis(test_file, 2019, col_select = ("PCLASS_ORPROC"))
+  expect_equal(df_not_corrected$PCLASS_ORPROC, df_no_key$PCLASS_ORPROC)
+
 })

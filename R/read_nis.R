@@ -5,16 +5,15 @@
 #' function reads the .ASC file and returns a R object with the correct variable
 #' names and NA values.
 #'
-#' @param file Path to NIS dataset file
-#' @param year The year of the dataset
-#' @param import_method The function to import data. The default is readr
+#' @param file Path to NIS dataset file.
+#' @param year The year of the dataset.
+#' @param import_method The function to import data. The default is readr.
 #' @param col_select Columns to include in the results. Columns can be selected
 #' by name or by a numerical column index.
 #' @param n_max The maximum number of rows/observations. The default is set all
 #'   rows (`Inf`).
-#' @param corrected Dataset has had the offical corrections applied The defaul
-#'   is set to TRUE
-#' @param ... Additional arguments
+#' @param corrected The official corrections will be applied to the data.
+#'   The default is set to TRUE.
 #'
 #' @return Returns a tibble
 #' @export
@@ -59,14 +58,22 @@ read_nis <- function(file, year, import_method = "readr", col_select = NULL,
 
   # Update to the corrected PCLASS_ORPROC from NIS_2019_corrected
   if (corrected == TRUE & year == 2019){
-    if ("PRPCLASS_ORPROC" %in% colnames(nis_data)){
+    # If KEY_NIS or PLCASS_ORPROC is missing from the dataset, the uncorrected dataset.
+    if (!("KEY_NIS" %in% colnames(nis_data))){
+      warning("Corrections were not applied because KEY_NIS was not included in read_nis()")
+      return(nis_data)
+
+    } else if (!("PCLASS_ORPROC" %in% colnames(nis_data))){
+      warning("Corrections were not applied because PCLASS_ORPROC was not included in read_nis()")
+      return(nis_data)
+      # If both KEY_NIS and PCLASS_ORPROC are included, return the corrected dataset.
+    } else{
       nis_data <-
         nis_data |>
         dplyr::rows_update(NIS_2019_corrected, by = "KEY_NIS", unmatched = "ignore")
-    } else{
-      nis_data
     }
   }
+  # Otherwise return the dataset as is
   else {
     return(nis_data)
   }
