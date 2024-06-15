@@ -3,7 +3,7 @@ Title: Easily load and work with HCUP datasets
 Version: 0.0.0.9000
 Authors@R: 
     person("Jon", "Bryant", email = "jonbryapp@protonmail.com", role = c("aut", "cre"),)
-Description: Easily load and work with HCUP datasets, such as the NIS datasets, without needing to deal with finding the variable names, na values, etc. Current developer version works with NIS 2019 V2 with datasets supported in the near future.
+Description: Easily load and work with HCUP datasets, such as the NIS datasets, without needing to deal with finding the variable names, na values, etc. Current developer version works with the NIS 2019 V2 dataset. More datasets supported in the near future.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -12,8 +12,14 @@ Imports:
     readr
 Depends: 
     R (>= 2.10)
-URL: https://github.com/jonbry/readHCUP
+URL: https://github.com/jonbry/readHCUP, https://jonbry.github.io/readHCUP/
 BugReports: https://github.com/jonbry/readHCUP/issues
 Suggests: 
+    devtools,
+    dplyr,
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+LazyData: true
+VignetteBuilder: knitr

@@ -4,19 +4,30 @@
 \alias{read_nis}
 \title{Read in NIS dataset}
 \usage{
-read_nis(file, year, import_method = "readr", n_max = Inf, ...)
+read_nis(
+  file,
+  year,
+  import_method = "readr",
+  col_select = NULL,
+  n_max = Inf,
+  corrected = TRUE
+)
 }
 \arguments{
-\item{file}{Path to NIS dataset file}
+\item{file}{Path to NIS dataset file.}
 
-\item{year}{The year of the dataset}
+\item{year}{The year of the dataset.}
 
-\item{import_method}{The function to import data. The default is readr}
+\item{import_method}{The function to import data. The default is readr.}
+
+\item{col_select}{Columns to include in the results. Columns can be selected
+by name or by a numerical column index.}
 
 \item{n_max}{The maximum number of rows/observations. The default is set all
-rows (\code{Inf})}
+rows (\code{Inf}).}
 
-\item{...}{Additional arguments}
+\item{corrected}{The official corrections will be applied to the data.
+The default is set to TRUE.}
 }
 \value{
 Returns a tibble
@@ -28,13 +39,24 @@ function reads the .ASC file and returns a R object with the correct variable
 names and NA values.
 }
 \examples{
-# Read in the example NIS 2019 dataset
+# Read in the example NIS 2019 dataset.
 \dontrun{
 NIS_2019_df <- read_nis("NIS_2019_test_data.ASC", 2019)
 }
 
-# Read in the first 5 observations of the example NIS 2019 dataset
+# Read in the first 5 observations of the example NIS 2019 dataset.
 \dontrun{
 NIS_2019_df <- read_nis("NIS_2019_test_data.ASC", 2019, n_max = 5)
+}
+
+# Read in the first three diagnostic codes un the first 10 observations of
+# the example NIS 2019 dataset.
+\dontrun{
+NIS_2019_df <- read_nis("NIS_2019_test_data.ASC", 2019,
+col_select = c("I10_DX1", "I10_DX2", "I10_DX3"), n_max = 10)
+
+# This can also be done with:
+NIS_2019_df <- read_nis("NIS_2019_test_data.ASC", 2019,
+col_select = 19:21, n_max = 10)
 }
 }

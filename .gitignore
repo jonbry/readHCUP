@@ -6,3 +6,7 @@
 .httr-oauth
 .DS_Store
 .quarto
+NIS_2019_PCLASS_ORPROC.csv
+inst/doc
+docs
+hex_creator.R
