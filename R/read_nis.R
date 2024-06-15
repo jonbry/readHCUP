@@ -46,6 +46,12 @@ read_nis <- function(file, year, import_method = "readr", col_select = NULL,
   na <- get0(na_file_name, envir = asNamespace("readHCUP"))
   widths <- get0(width_file_name, envir = asNamespace("readHCUP"))
 
+  desc_lookup <- paste("NIS", year, sep = " ")
+  datasets <- readHCUP::supported_datasets
+  if (!(desc_lookup %in% datasets[1])){
+    stop("This is not a currently supported dataset. \n  A list of supported datasets can be found using: View(supported_datasets)")
+  }
+
   if (!is.null(col_select)){
     nis_data <- readr::read_fwf(file,
                                 readr::fwf_widths(widths$width, col_names = widths$variable),

@@ -5,6 +5,11 @@ test_that("returns a tibble",{
   expect_equal(nrow(test_df), 10)
 })
 
+test_that("error if dataset does not exist", {
+  test_file <- system.file("extdata", "NIS_2019_test_data.ASC", package = "readHCUP")
+  expect_error(test_2040 <- read_nis(test_file, 2040))
+})
+
 test_that("n_max works as expected", {
   test_file <- system.file("extdata", "NIS_2019_test_data.ASC", package = "readHCUP")
   test_df5row <- read_nis(test_file, 2019, n_max = 5, col_select = NULL)

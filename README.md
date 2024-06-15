@@ -38,19 +38,23 @@ devtools::install_github("jonbry/readHCUP")
 
 ## Usage
 
+### Read NIS datasets
+
 ``` r
 library(readHCUP)
 
 # The following uses an example NIS dataset
 
 # Read theNIS dataset
-df <- read_nis("NIS_2019_test_data.ASC", 2019)
+df <- read_nis("inst/data/NIS_2019_test_data.ASC", 2019)
 
 # Read only the first 5 observations
 df_5 <- read_nis("NIS_2019_test_data.ASC", 2019, n_max = 5)
 
 # Read in only the first three diagnostic codes (columns) of the first 10 observations
-df_3dx <- read_nis("NIS_2019_test_data.ASC", 2019, col_select = c("I10_DX1", "I10_DX2", "I10_DX3"), n_max = 10)
+df_3dx <- read_nis("NIS_2019_test_data.ASC", 2019,
+                   col_select = c("I10_DX1", "I10_DX2", "I10_DX3"),
+                   n_max = 10)
 ```
 
 #### Corrections
@@ -62,15 +66,42 @@ download a csv file with the corrections and then update the values in
 the dataset. This can be a bit of a hassle when there are 7M+ records,
 so the corrections are automatically applied when using `read_nis()`.
 
-- Note: In order for the corrections to be applied, `KEY_NIS` needs to
-  be included in your dataset. If `KEY_NIS` is not included,
-  `read_nis()` will still return the data and you will receive a warning
-  that corrections were not applied.
+- Note: In order for the corrections to be applied, `KEY_NIS` and
+  `PCLASS_ORPROC` need to be included in your dataset. If they are not
+  included, `read_nis()` will still return the data and you will receive
+  a warning that corrections were not applied.
 
-If for some reason you don’t want the corrections to be automatically
-applied, use `corrected = FALSE`:
+If you don’t want the corrections to be automatically applied, use
+`corrected = FALSE`:
 
 ``` r
-# Read dataset without corrections being applied
+# Read dataset the first 10 records of the dataset without corrections.
 df <- read_nis("NIS_2019_test_data.ASC", 2019, n_max = 10, corrected = FALSE)
+```
+
+#### Supported datasets
+
+The structure of the NIS dataset can change each year, which means
+`read_nis()` needs to be updated to support each NIS dataset. You can
+find a list of readHCUP’s supported datasets by running the following:
+
+``` r
+View(supported_datasets)
+```
+
+- The `data` column is the name of the dataset and the year
+
+- The `dataset_file_name` column is the file name that was provided by
+  the HCUP Central Distributor
+
+#### Descriptions
+
+The NIS dataset has over 150 variables, which are covered in detail on
+HCUP’s [website](https://hcup-us.ahrq.gov/db/nation/nis/nisdde.jsp). The
+`descriptions()` function allows you to get a list of all of the
+variable descriptions:
+
+``` r
+d_list <- descriptions(nis, 2019)
+head(d_list)
 ```
