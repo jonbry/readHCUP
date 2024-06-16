@@ -8,7 +8,7 @@
 
 ## Overview
 
-readHCUP makes it easy to read and work with datasets from [Healthcare
+readHCUP makes it easy to read and work with datasets from the [Healthcare
 Cost and Utilization Project (HCUP)](https://hcup-us.ahrq.gov/).
 readHCUP’s functions are designed to work with the ASC files directly,
 so there is no need to preprocess the data for any of the supported
@@ -21,7 +21,7 @@ The currently supported datasets:
 
 The current import method utilizes
 [readr](https://readr.tidyverse.org/), and additional import functions
-(data.table, etc) will be added in the near future.
+(data.table, etc) will be added shortly.
 
 Please feel free to create an issue if you have any questions, feedback,
 or feature requests.
@@ -60,15 +60,15 @@ df_3dx <- read_nis("NIS_2019_test_data.ASC", 2019,
 #### Corrections
 
 By default, the `read_nis()` automatically returns the corrected version
-of the data. For example, HCUP released a corrections for
-`PCLASS_ORPROC` in the NIS 2019 and 2020 datasets. Usually, you’d need
-download a csv file with the corrections and then update the values in
-the dataset. This can be a bit of a hassle when there are 7M+ records,
+of the data. For example, HCUP released corrections for
+`PCLASS_ORPROC` in the NIS 2019 and 2020 datasets. Usually, you’d need to
+download a CSV file with the corrections and then update the values in
+the dataset. This process can be a bit of a hassle when there are 7M+ records,
 so the corrections are automatically applied when using `read_nis()`.
 
-- Note: In order for the corrections to be applied, `KEY_NIS` and
+- Note: For the corrections to be applied, `KEY_NIS` and
   `PCLASS_ORPROC` need to be included in your dataset. If they are not
-  included, `read_nis()` will still return the data and you will receive
+  included, `read_nis()` will still return the data, and you will receive
   a warning that corrections were not applied.
 
 If you don’t want the corrections to be automatically applied, use
@@ -89,9 +89,9 @@ find a list of readHCUP’s supported datasets by running the following:
 View(supported_datasets)
 ```
 
-- The `data` column is the name of the dataset and the year
+- `data`is the name of the dataset and the year
 
-- The `dataset_file_name` column is the file name that was provided by
+- `dataset_file_name` is the file name that was provided by
   the HCUP Central Distributor
 
 #### Descriptions

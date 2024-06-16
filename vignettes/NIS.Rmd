@@ -20,7 +20,7 @@ library(readHCUP)
 
 ## The NIS dataset
 
-Working with the National Inpatient Sample (NIS) database can be challenging due to its size (\>7M records per year and 170+ variables) and the limited support for non-proprietary statistical software packages. The goal of `readHCUP` is to make it easier for researchers to focus on their research, not on loading data into R. With this in mind, `readHCUP`'s `read_nis()` allows researchers to read datasets with a single function call.
+Working with the National Inpatient Sample (NIS) database can be challenging due to its size (\>7M records per year and 170+ variables) and the limited support for non-proprietary statistical software packages. The goal of `readHCUP` is to make it easier for researchers to focus on their research, not loading data into R. With this in mind, `readHCUP`'s `read_nis()` allows researchers to read datasets with a single function call.
 
 ## Working with the NIS dataset
 
@@ -36,9 +36,9 @@ The path to the dataset and the year it was produced is all we need to read the 
 
 ### Corrected datasets
 
-By default, the `read_nis()` automatically returns the corrected version of the data. For example, HCUP released a corrections for `PCLASS_ORPROC` in the NIS 2019 and 2020 datasets. Usually, you'd need download a csv file with the corrections and then update the values in the dataset. This can be a bit of a hassle when there are 7M+ records, so the corrections are automatically applied when using `read_nis()`.
+By default, the `read_nis()` automatically returns the corrected version of the data. For example, HCUP released corrections for `PCLASS_ORPROC` in the NIS 2019 and 2020 datasets. Usually, you'd need to download a CSV file with the corrections and then update the values in the dataset. This process can be a bit of a hassle when there are 7M+ records, so the corrections are automatically applied when using `read_nis()`.
 
--   Note: In order for the corrections to be applied, `KEY_NIS` and `PCLASS_ORPROC` need to be included in your dataset. If they are not included, `read_nis()` will still return the data and you will receive a warning that corrections were not applied.
+-   Note: For the corrections to be applied, `KEY_NIS` and `PCLASS_ORPROC` need to be included in your dataset. If they are not included, `read_nis()` will still return the data, and you will receive a warning that corrections were not applied.
 
 If you don't want the corrections to be automatically applied, use `corrected = FALSE`:
 
@@ -55,9 +55,9 @@ The structure of the NIS dataset can change each year, which means `read_nis()` 
 supported_datasets
 ```
 
--   The `data` column is the name of the dataset and the year
+-   `data` is the name of the dataset and the year
 
--   The `dataset_file_name` column is the file name that was provided by the HCUP Central Distributor
+-   `dataset_file_name` is the file name that was provided by the HCUP Central Distributor
 
 If the dataset is not supported, you will receive an error message:
 
@@ -66,7 +66,7 @@ df_error <- read_nis("nis", 2040)
 
 ```
 
-If you're working with a dataset that is not currently supported, please open an [issue in GitHub](https://github.com/jonbry/readHCUP/issues) and we'll work on adding it to the list of supported datasets.
+If you're working with a dataset that is not currently supported, please open an [issue in GitHub](https://github.com/jonbry/readHCUP/issues), and we'll work on adding it to the list of supported datasets.
 
 #### Descriptions
 
