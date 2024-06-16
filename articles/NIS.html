@@ -93,7 +93,7 @@
 challenging due to its size (&gt;7M records per year and 170+ variables)
 and the limited support for non-proprietary statistical software
 packages. The goal of <code>readHCUP</code> is to make it easier for
-researchers to focus on their research, not on loading data into R. With
+researchers to focus on their research, not loading data into R. With
 this in mind, <code>readHCUP</code>’s <code><a href="../reference/read_nis.html">read_nis()</a></code> allows
 researchers to read datasets with a single function call.</p>
 </div>
@@ -119,18 +119,17 @@ the future, there will be additional support for other methods such as
 <h3 id="corrected-datasets">Corrected datasets<a class="anchor" aria-label="anchor" href="#corrected-datasets"></a>
 </h3>
 <p>By default, the <code><a href="../reference/read_nis.html">read_nis()</a></code> automatically returns the
-corrected version of the data. For example, HCUP released a corrections
+corrected version of the data. For example, HCUP released corrections
 for <code>PCLASS_ORPROC</code> in the NIS 2019 and 2020 datasets.
-Usually, you’d need download a csv file with the corrections and then
-update the values in the dataset. This can be a bit of a hassle when
-there are 7M+ records, so the corrections are automatically applied when
-using <code><a href="../reference/read_nis.html">read_nis()</a></code>.</p>
+Usually, you’d need to download a CSV file with the corrections and then
+update the values in the dataset. This process can be a bit of a hassle
+when there are 7M+ records, so the corrections are automatically applied
+when using <code><a href="../reference/read_nis.html">read_nis()</a></code>.</p>
 <ul>
-<li>Note: In order for the corrections to be applied,
-<code>KEY_NIS</code> and <code>PCLASS_ORPROC</code> need to be included
-in your dataset. If they are not included, <code><a href="../reference/read_nis.html">read_nis()</a></code> will
-still return the data and you will receive a warning that corrections
-were not applied.</li>
+<li>Note: For the corrections to be applied, <code>KEY_NIS</code> and
+<code>PCLASS_ORPROC</code> need to be included in your dataset. If they
+are not included, <code><a href="../reference/read_nis.html">read_nis()</a></code> will still return the data,
+and you will receive a warning that corrections were not applied.</li>
 </ul>
 <p>If you don’t want the corrections to be automatically applied, use
 <code>corrected = FALSE</code>:</p>
@@ -152,10 +151,10 @@ following:</p>
 <span><span class="co">#&gt; $dataset_file_name</span></span>
 <span><span class="co">#&gt; [1] "NIS_2019_CORE_V2"</span></span></code></pre></div>
 <ul>
-<li><p>The <code>data</code> column is the name of the dataset and the
+<li><p><code>data</code> is the name of the dataset and the
 year</p></li>
-<li><p>The <code>dataset_file_name</code> column is the file name that
-was provided by the HCUP Central Distributor</p></li>
+<li><p><code>dataset_file_name</code> is the file name that was provided
+by the HCUP Central Distributor</p></li>
 </ul>
 <p>If the dataset is not supported, you will receive an error
 message:</p>
@@ -165,7 +164,7 @@ message:</p>
 <span><span class="co">#&gt;   A list of supported datasets can be found using: View(supported_datasets)</span></span></code></pre></div>
 <p>If you’re working with a dataset that is not currently supported,
 please open an <a href="https://github.com/jonbry/readHCUP/issues" class="external-link">issue
-in GitHub</a> and we’ll work on adding it to the list of supported
+in GitHub</a>, and we’ll work on adding it to the list of supported
 datasets.</p>
 </div>
 <div class="section level4">
