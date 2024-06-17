@@ -76,16 +76,19 @@
 </h1>
 </div>
 <!-- badges: start -->
+
 <!-- badges: end -->
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>readHCUP makes it easy to read and work with datasets from the <a href="https://hcup-us.ahrq.gov/" class="external-link">Healthcare Cost and Utilization Project (HCUP)</a>. readHCUP’s functions are designed to work with the ASC files directly, so there is no need to preprocess the data for any of the supported datasets. The number of supported datasets is currently limited while the package is in beta, but more datasets will be added soon.</p>
+<p>readHCUP makes it easy to read and work with datasets from <a href="https://hcup-us.ahrq.gov/" class="external-link">Healthcare Cost and Utilization Project (HCUP)</a>. readHCUP’s functions are designed to work with the ASC files directly, so there is no need to preprocess the data for any of the supported datasets. The number of supported datasets is currently limited while the package is in beta, but more datasets will be added soon.</p>
 <p>The currently supported datasets:</p>
 <ul>
 <li>NIS 2019</li>
+<li>NIS 2020</li>
+<li>NIS 2021</li>
 </ul>
-<p>The current import method utilizes <a href="https://readr.tidyverse.org/" class="external-link">readr</a>, and additional import functions (data.table, etc) will be added shortly.</p>
+<p>The current import method utilizes <a href="https://readr.tidyverse.org/" class="external-link">readr</a>, and additional import functions (data.table, etc) will be added in the near future.</p>
 <p>Please feel free to create an issue if you have any questions, feedback, or feature requests.</p>
 </div>
 <div class="section level2">
@@ -120,9 +123,9 @@
 <div class="section level4">
 <h4 id="corrections">Corrections<a class="anchor" aria-label="anchor" href="#corrections"></a>
 </h4>
-<p>By default, the <code><a href="reference/read_nis.html">read_nis()</a></code> automatically returns the corrected version of the data. For example, HCUP released corrections for <code>PCLASS_ORPROC</code> in the NIS 2019 and 2020 datasets. Usually, you’d need to download a CSV file with the corrections and then update the values in the dataset. This process can be a bit of a hassle when there are 7M+ records, so the corrections are automatically applied when using <code><a href="reference/read_nis.html">read_nis()</a></code>.</p>
+<p>By default, the <code><a href="reference/read_nis.html">read_nis()</a></code> automatically returns the corrected version of the data. For example, HCUP released a corrections for <code>PCLASS_ORPROC</code> in the NIS 2019 and 2020 datasets. Usually, you’d need download a csv file with the corrections and then update the values in the dataset. This can be a bit of a hassle when there are 7M+ records, so the corrections are automatically applied when using <code><a href="reference/read_nis.html">read_nis()</a></code>.</p>
 <ul>
-<li>Note: For the corrections to be applied, <code>KEY_NIS</code> and <code>PCLASS_ORPROC</code> need to be included in your dataset. If they are not included, <code><a href="reference/read_nis.html">read_nis()</a></code> will still return the data, and you will receive a warning that corrections were not applied.</li>
+<li>Note: In order for the corrections to be applied, <code>KEY_NIS</code> and <code>PCLASS_ORPROC</code> need to be included in your dataset. If they are not included, <code><a href="reference/read_nis.html">read_nis()</a></code> will still return the data and you will receive a warning that corrections were not applied.</li>
 </ul>
 <p>If you don’t want the corrections to be automatically applied, use <code>corrected = FALSE</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -135,9 +138,10 @@
 <p>The structure of the NIS dataset can change each year, which means <code><a href="reference/read_nis.html">read_nis()</a></code> needs to be updated to support each NIS dataset. You can find a list of readHCUP’s supported datasets by running the following:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">supported_datasets</span><span class="op">)</span></span></code></pre></div>
+<p><code>supported_datasets</code> includes:</p>
 <ul>
-<li><p><code>data</code>is the name of the dataset and the year</p></li>
-<li><p><code>dataset_file_name</code> is the file name that was provided by the HCUP Central Distributor</p></li>
+<li><p>A <code>data</code> column is the name of the dataset and the year</p></li>
+<li><p>A <code>dataset_file_name</code> column is the file name that was provided by the HCUP Central Distributor</p></li>
 </ul>
 </div>
 <div class="section level4">
@@ -182,7 +186,12 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/jonbry/readHCUP/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/jonbry/readHCUP/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
