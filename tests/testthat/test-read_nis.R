@@ -56,5 +56,15 @@ test_that("corrected works properly", {
   expect_warning(read_nis(test_file, 2019, col_select = ("PCLASS_ORPROC")))
   df_no_key <- read_nis(test_file, 2019, col_select = ("PCLASS_ORPROC"))
   expect_equal(df_not_corrected$PCLASS_ORPROC, df_no_key$PCLASS_ORPROC)
+  # Check corrected for 2020
+  test_file_2020 <- system.file("extdata", "NIS_2020_test_data.ASC", package = "readHCUP")
+  not_cor_2020 <- rep(0, 10)
+  df_2020_notcor <- read_nis(test_file_2020, 2020, corrected = FALSE)
+  expect_equal(df_2020_notcor$PCLASS_ORPROC, not_cor_2020)
 
+  cor_2020 <- not_cor_2020
+  cor_2020[3] <- 1
+  cor_2020[5] <- 1
+  df_2020_cor <- read_nis(test_file_2020, 2020)
+  expect_equal(df_2020_cor$PCLASS_ORPROC, cor_2020)
 })

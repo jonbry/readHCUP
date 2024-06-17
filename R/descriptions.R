@@ -13,7 +13,8 @@
 descriptions <- function(dataset, year) {
   desc_lookup <- paste(toupper(dataset), year, sep = " ")
   datasets <- readHCUP::supported_datasets
-  if (desc_lookup %in% datasets[1]){
+  # Check to see if dataset is supported, if not return error
+  if (desc_lookup %in% datasets[[1]]){
     description <- get0(paste(toupper(dataset), year, "descriptions", sep = "_"), envir = asNamespace("readHCUP"))
   }
   else{
