@@ -45,17 +45,19 @@ read_nis <- function(file, year, import_method = "readr", col_select = NULL,
   na_file_name <- paste("NIS", year, "na", sep = "_")
   na <- get0(na_file_name, envir = asNamespace("readHCUP"))
   widths <- get0(width_file_name, envir = asNamespace("readHCUP"))
-
+  # Look up to see if dataset is supported
   desc_lookup <- paste("NIS", year, sep = " ")
   datasets <- readHCUP::supported_datasets
-  if (!(desc_lookup %in% datasets[1])){
+  if (!(desc_lookup %in% datasets[[1]])){
+    # If dataset isn't supported stop and return error
     stop("This is not a currently supported dataset. \n  A list of supported datasets can be found using: View(supported_datasets)")
   }
-
+  # If there is a value passed for col_select
   if (!is.null(col_select)){
     nis_data <- readr::read_fwf(file,
                                 readr::fwf_widths(widths$width, col_names = widths$variable),
                                 col_types = widths$r_type, na = na$na_vec, col_select = col_select, n_max = n_max)
+    # Return tibble with all rows
   } else {
     nis_data <- readr::read_fwf(file,
                                 readr::fwf_widths(widths$width, col_names = widths$variable),
@@ -77,6 +79,23 @@ read_nis <- function(file, year, import_method = "readr", col_select = NULL,
       nis_data <-
         nis_data |>
         dplyr::rows_update(NIS_2019_corrected, by = "KEY_NIS", unmatched = "ignore")
+    }
+  }
+
+  if (corrected == TRUE & year == 2020){
+    # If KEY_NIS or PLCASS_ORPROC is missing from the dataset, the uncorrected dataset.
+    if (!("KEY_NIS" %in% colnames(nis_data))){
+      warning("Corrections were not applied because KEY_NIS was not included in read_nis()")
+      return(nis_data)
+
+    } else if (!("PCLASS_ORPROC" %in% colnames(nis_data))){
+      warning("Corrections were not applied because PCLASS_ORPROC was not included in read_nis()")
+      return(nis_data)
+      # If both KEY_NIS and PCLASS_ORPROC are included, return the corrected dataset.
+    } else{
+      nis_data <-
+        nis_data |>
+        dplyr::rows_update(NIS_2020_corrected, by = "KEY_NIS", unmatched = "ignore")
     }
   }
   # Otherwise return the dataset as is

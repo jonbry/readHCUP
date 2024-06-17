@@ -17,6 +17,8 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/jonbry/readHCUP/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jonbry/readHCUP/actions/workflows/R-CMD-check.yaml)
+
 <!-- badges: end -->
 
 ## Overview
@@ -26,6 +28,8 @@ readHCUP makes it easy to read and work with datasets from [Healthcare Cost and 
 The currently supported datasets:
 
 -   NIS 2019
+-   NIS 2020
+-   NIS 2021
 
 The current import method utilizes [readr](https://readr.tidyverse.org/), and additional import functions (data.table, etc) will be added in the near future.
 
@@ -82,9 +86,11 @@ The structure of the NIS dataset can change each year, which means `read_nis()` 
 View(supported_datasets)
 ```
 
--   The `data` column is the name of the dataset and the year
+`supported_datasets` includes:
 
--   The `dataset_file_name` column is the file name that was provided by the HCUP Central Distributor
+-   A `data` column is the name of the dataset and the year
+
+-   A `dataset_file_name` column is the file name that was provided by the HCUP Central Distributor
 
 #### Descriptions
 
