@@ -49,7 +49,10 @@ read_nis <- function(file, year, import_method = "readr", col_select = NULL,
   desc_lookup <- paste("NIS", year, sep = " ")
   datasets <- readHCUP::supported_datasets
   if (!(desc_lookup %in% datasets[[1]])){
+<<<<<<< HEAD
     # If dataset isn't supported stop and return error
+=======
+>>>>>>> 2a7c168ee2ecb015596e6949b20205b4142f5cd9
     stop("This is not a currently supported dataset. \n  A list of supported datasets can be found using: View(supported_datasets)")
   }
   # If there is a value passed for col_select
