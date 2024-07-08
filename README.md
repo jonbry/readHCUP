@@ -20,9 +20,7 @@ the package is in beta, but more datasets will be added soon.
 
 The currently supported datasets:
 
-- NIS 2019
-- NIS 2020
-- NIS 2021
+- NIS 2016-2021
 
 The current import method utilizes
 [readr](https://readr.tidyverse.org/), and additional import functions

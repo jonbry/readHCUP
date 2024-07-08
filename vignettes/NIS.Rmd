@@ -63,7 +63,6 @@ If the dataset is not supported, you will receive an error message:
 
 ```{r, error = TRUE}
 df_error <- read_nis("nis", 2040)
-
 ```
 
 If you're working with a dataset that is not currently supported, please open an [issue in GitHub](https://github.com/jonbry/readHCUP/issues), and we'll work on adding it to the list of supported datasets.
